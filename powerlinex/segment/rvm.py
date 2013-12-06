@@ -14,7 +14,7 @@ def readlines(cmd, cwd):
 @requires_segment_info
 def version(pl, segment_info):
     try:
-      for line in readlines(["rvm", "current"], segment_info['getcwd']()):
+      for line in readlines(["rvm-prompt", "i v g"], segment_info['getcwd']()):
           # Now to process line
           if line == "system":
               return None
