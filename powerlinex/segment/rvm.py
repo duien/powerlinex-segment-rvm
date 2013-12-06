@@ -19,25 +19,29 @@ def version(pl, segment_info):
           if line == "system":
               return None
           else:
-              contents = []
+              ret = []
               info = line.split('@')
               if len(info) > 1:
-                  contents.append(info[1])
-                  # ret.append({
-                  #     'contents': info[1],
-                  #     'highlight_group': ['ruby_version', 'virtualenv']
-                  # })
+                  ret.append({
+                      'contents': info[1],
+                      'highlight_group': ['ruby_version', 'virtualenv'],
+                      'draw_inner_divider': True
+                  })
               version = info[0]
               info = version.split('-', 1)
               if info[0] == 'ruby':
-                  contents.insert(0, info[1])
+                  ret.insert(0, {
+                      'contents': info[1],
+                      'highlight_group': ['ruby_version', 'virtualenv'],
+                      'draw_inner_divider': True
+                  })
               else:
-                  contents.prepend(version)
-              return [{
-                  'contents': contents,
-                  'highlight_group': ['ruby_version', 'virtualenv'],
-                  'draw_inner_divider': True
-              }]
+                  ret.prepend({
+                      'contents': version,
+                      'highlight_group': ['ruby_version', 'virtualenv'],
+                      'draw_inner_divider': True
+                  })
+              return ret
     except OSError as e:
         if e.errno == 2:
             pass
