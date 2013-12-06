@@ -30,13 +30,13 @@ def version(pl, segment_info):
               version = info[0]
               info = version.split('-', 1)
               if info[0] == 'ruby':
-                  ret.insert(0, {
+                  ret.append({
                       'contents': info[1],
                       'highlight_group': ['ruby_version', 'virtualenv'],
                       'draw_inner_divider': True
                   })
               else:
-                  ret.prepend({
+                  ret.append({
                       'contents': version,
                       'highlight_group': ['ruby_version', 'virtualenv'],
                       'draw_inner_divider': True
